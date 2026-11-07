@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Dashboard</title>
+
+<style>
+body {
+    background: #101827;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background: #1e293b;
+    width: 100%;
+    max-width: 550px;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+h1 { color: #38bdf8; }
+
+.success {
+    color: #22c55e;
+    font-size: 20px;
+}
+
+button {
+    padding: 13px 35px;
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover { background: #b91c1c; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔐 Secure Dashboard</h1>
+
+<h2>Welcome, {{ username }}!</h2>
+
+<p class="success">Login Successful!</p>
+
+<p>Your account is logged in successfully.</p>
+
+<p>Welcome to the Secure Login System.</p>
+
+<form method="POST" action="{{ url_for('logout') }}">
+
+<input type="hidden"
+       name="csrf_token"
+       value="{{ csrf_token() }}">
+
+<button type="submit">Logout</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Login</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    background: #101827;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background: #1e293b;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+h1 { color: #38bdf8; }
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    background: #0284c7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover { background: #0369a1; }
+
+a { color: #38bdf8; }
+
+.message {
+    color: #facc15;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔐 Secure Login</h1>
+<p>Welcome Back!</p>
+
+{% with messages = get_flashed_messages() %}
+{% for message in messages %}
+<p class="message">{{ message }}</p>
+{% endfor %}
+{% endwith %}
+
+<form method="POST" action="{{ url_for('login') }}">
+
+<input type="hidden"
+       name="csrf_token"
+       value="{{ csrf_token() }}">
+
+<input type="email"
+       name="email"
+       placeholder="Enter Email Address"
+       required>
+
+<input type="password"
+       name="password"
+       placeholder="Enter Password"
+       required>
+
+<button type="submit">Login</button>
+
+</form>
+
+<p>Don't have an account?
+<a href="{{ url_for('register') }}">Register Here</a>
+</p>
+
+</div>
+
+</body>
+</html>
